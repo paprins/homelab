@@ -99,7 +99,18 @@ kubeseal \
 
 > Each SealedSecret includes the target namespace in its metadata. The controller creates the decrypted Secret in that namespace, regardless of where ArgoCD deploys the SealedSecret resource.
 
-## 5. ArgoCD Integration
+## 5. Delete the Manually-Created Secrets
+
+The Sealed Secrets controller will not overwrite secrets it did not create. Before the SealedSecrets can take effect, delete the existing manually-created secrets:
+
+```bash
+kubectl delete secret transip-secret -n cert-manager
+kubectl delete secret transip-api-key -n external-dns
+```
+
+The controller immediately recreates them from the SealedSecret resources. Downtime is brief (seconds) — cert-manager and external-dns will pick up the new secrets on their next reconciliation loop.
+
+## 6. ArgoCD Integration
 
 The ArgoCD Application is already created at `k3s/argocd/apps/sealed-secrets.yaml`. It points at the `k3s/sealed-secrets/` directory and syncs automatically via the App of Apps pattern.
 
@@ -177,6 +188,16 @@ kubectl logs -n external-dns -l app.kubernetes.io/name=external-dns --tail=20
 ```
 
 ## Troubleshooting
+
+### "Resource already exists and is not managed by SealedSecret"
+
+The controller refuses to overwrite secrets it didn't create. Delete the existing manually-created secret and the controller will recreate it:
+
+```bash
+kubectl delete secret <name> -n <namespace>
+```
+
+The SealedSecret controller picks up the change immediately and creates the secret.
 
 ### SealedSecret exists but Secret is not created
 
