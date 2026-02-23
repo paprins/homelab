@@ -3,6 +3,7 @@
 
 ## Custom ##
 secrets/
+sealed-secrets-master-key.yaml
 
 ### macOS ###
 # General

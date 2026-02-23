@@ -46,5 +46,8 @@ Providers with built-in support in both cert-manager and external-dns: **Cloudfl
 6. [external-dns](docs/06-EXTERNAL-DNS.md) — Automatic DNS records
 7. [Traefik TLS](docs/07-TRAEFIK-TLS.md) — Default wildcard TLS certificate
 8. [Argo CD](docs/08-ARGOCD.md) — GitOps continuous delivery
+9. [Sealed Secrets](docs/20-SEALED-SECRETS.md) — Encrypted secrets in Git
+
+[Recommendations](docs/100-RECOMMENDATIONS.md) — Service recommendations for future expansion
 
 I will do my best to update this repository and let it reflect the current state of my homelab. Some of the information only applies to my setup, other information is generic and can be used anywhere.
