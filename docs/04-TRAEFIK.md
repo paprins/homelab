@@ -60,10 +60,11 @@ kubectl logs -n traefik -l app.kubernetes.io/name=traefik
 
 **No external IP on the LoadBalancer Service**
 
-k3s uses ServiceLB (formerly Klipper) by default. If the external IP stays `<pending>`, check that ServiceLB is enabled:
+If the external IP stays `<pending>`, verify that MetalLB is running and has an available IP pool (see [03-METALLB.md](03-METALLB.md)):
 
 ```bash
-kubectl get pods -n kube-system -l app=svclb-traefik
+kubectl get pods -n metallb-system
+kubectl get ipaddresspool -n metallb-system
 ```
 
 **Ingress not routing traffic**
