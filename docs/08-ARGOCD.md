@@ -36,7 +36,8 @@ Install Argo CD using the `argo/argo-cd` Helm chart. The key configuration choic
 ```bash
 helm install argocd argo/argo-cd \
   --namespace argocd \
-  --set 'server.extraArgs[0]=--insecure'
+  --set 'server.extraArgs[0]=--insecure' \
+  --set 'configs.cm.url=https://argocd.geeklabs.dev'
 ```
 
 > The `--insecure` flag tells the Argo CD server to serve over HTTP. This is safe because Traefik handles TLS termination in front of it using the wildcard certificate.
@@ -438,6 +439,24 @@ argocd repo list --grpc-web
 ```
 
 If the repo shows a connection error, re-add it with correct credentials.
+
+## Enable Kustomize Helm Rendering
+
+By default, Kustomize cannot render Helm charts. If you want to use Kustomize to patch and render Helm charts in your Applications, you need to enable the `--enable-helm` flag globally.
+
+This adds `--enable-helm` to every `kustomize build` that Argo CD runs. It is a global setting — it cannot be configured per Application. See the [Argo CD Kustomize docs](https://argo-cd.readthedocs.io/en/stable/user-guide/kustomize/#kustomizing-helm-charts) for details.
+
+Update the existing Helm deployment:
+
+```bash
+helm upgrade argocd argo/argo-cd \
+  --namespace argocd \
+  --set 'server.extraArgs[0]=--insecure' \
+  --set 'configs.cm.url=https://argocd.geeklabs.dev' \
+  --set 'configs.cm.kustomize\.buildOptions=--enable-helm'
+```
+
+> When running `helm upgrade`, you must include all previously set values — Helm does not merge with prior `--set` flags. Omitting a value resets it to the chart default.
 
 ## Cleanup
 
