@@ -1,4 +1,5 @@
 # Homelab Service Recommendations
+> WIP
 
 Recommended services for the k3s homelab cluster, organized by priority phase. The current setup already includes k3s, MetalLB, Traefik, cert-manager, external-dns, and ArgoCD.
 
@@ -78,48 +79,7 @@ Crowdsourced intrusion prevention engine. Detects and blocks attacks using commu
 
 Lightweight, self-hosted Bitwarden-compatible password manager. Extremely low resource usage (~64MB RAM). Provides browser extensions, mobile apps, and CLI access.
 
-## Phase 4 — Self-Hosted Essentials
-
-### Homepage
-
-YAML-configured service dashboard with widgets for ArgoCD, Traefik, Prometheus, and many other services. Configuration lives in Git and deploys via ArgoCD.
-
-- Repository: https://github.com/gethomepage/homepage
-- Helm chart available
-
-### AdGuard Home / Blocky
-
-Network-wide DNS with ad and tracker blocking.
-
-- **AdGuard Home** — polished UI, built-in DNS-over-HTTPS/TLS, better filtering engine
-- **Blocky** — pure YAML config, more GitOps-friendly, Kubernetes-native
-
-### Paperless-ngx
-
-Document management system with OCR. Scans, indexes, and stores documents with full-text search. Backs up to the Synology NAS.
-
-## Phase 5 — Media & Photos
-
-### Jellyfin
-
-Open-source media server for movies, TV shows, and music. Store media on the Synology NAS via NFS. The Pi 5 supports hardware-accelerated video decode via V4L2 for direct play.
-
-### Immich
-
-Self-hosted Google Photos alternative with ML-powered face recognition, maps, and memories. Actively developed. Note: ML features are CPU-heavy and slower on ARM64.
-
-### *arr Stack
-
-Automated media management:
-
-- **Radarr** — movies
-- **Sonarr** — TV shows
-- **Prowlarr** — indexer manager
-- **Bazarr** — subtitles
-
-All have ARM64 images and Helm charts available.
-
-## Phase 6 — Advanced
+## Phase 5 — Advanced
 
 ### Longhorn
 
@@ -138,18 +98,3 @@ Alternative: **Headscale** for a fully self-hosted Tailscale control server.
 ### Renovate
 
 Automated dependency update bot. Scans Git repos and creates PRs when Helm charts, container images, or other dependencies are outdated. Essential for keeping the homelab current.
-
-## Resource Considerations
-
-With 3x Raspberry Pi 5 (8GB RAM) nodes, memory is the primary constraint.
-
-| Service | Estimated Memory |
-|---------|-----------------|
-| kube-prometheus-stack | 1-1.5 GB (across cluster) |
-| Loki | ~512 MB |
-| Jellyfin (direct play) | 256-512 MB |
-| Immich | 512 MB - 1 GB |
-| Vaultwarden | ~64 MB |
-| Most other services | 128-256 MB each |
-
-Phases 1-4 fit comfortably. Monitor memory pressure when adding Phase 5 media services.
