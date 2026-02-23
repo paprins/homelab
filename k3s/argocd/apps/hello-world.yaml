@@ -6,7 +6,7 @@ metadata:
 spec:
   project: homelab
   source:
-    repoURL: https://github.com/<your-user>/homelab.git
+    repoURL: https://github.com/paprins/homelab.git
     targetRevision: main
     path: demo
   destination:
