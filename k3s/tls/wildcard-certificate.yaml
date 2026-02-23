@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-geeklabs-dev
+  namespace: traefik
+spec:
+  secretName: wildcard-geeklabs-dev-tls
+  issuerRef:
+    name: letsencrypt-issuer-dns01
+    kind: ClusterIssuer
+  dnsNames:
+    - "*.geeklabs.dev"
