@@ -50,4 +50,16 @@ Providers with built-in support in both cert-manager and external-dns: **Cloudfl
 
 [Recommendations](docs/100-RECOMMENDATIONS.md) — Service recommendations for future expansion
 
+## Currently Installed
+
+The following services are currently deployed on my cluster:
+
+* `metallb` - LoadBalancer
+* `traefik` - Ingress Controller
+* `sealed-secrets` - encrypt your `Secrets` so you can safely push them to Git
+* `cert-manager` - X.509 certificate management using `acme-issuer`
+* `external-dns` - auto DNS record creation for `Service` resources
+* `argocd` - GitOps
+* `authentik` - open-source IdP (Identity Provider) and SSO (Single Sign On) platform
+
 I will do my best to update this repository and let it reflect the current state of my homelab. Some of the information only applies to my setup, other information is generic and can be used anywhere.
