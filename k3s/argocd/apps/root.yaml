@@ -9,9 +9,6 @@ spec:
     repoURL: https://github.com/paprins/homelab.git
     targetRevision: main
     path: k3s/argocd/apps
-    directory:
-      recurse: true
-      jsonnet: {}
   destination:
     name: in-cluster
     namespace: argocd
