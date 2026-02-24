@@ -1,7 +1,3 @@
-global:
-    envFrom:
-        - secretRef:
-            name: authentik-secrets
 authentik:
     error_reporting:
         enabled: false
