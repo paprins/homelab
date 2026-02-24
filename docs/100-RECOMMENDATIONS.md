@@ -67,9 +67,13 @@ Lightweight uptime monitoring with a clean UI and push notifications (Telegram, 
 
 ### Authelia
 
-Lightweight SSO and MFA proxy that integrates natively with Traefik via ForwardAuth middleware. Provides a single login for all services behind the ingress. Supports TOTP, WebAuthn/Passkeys, and OIDC.
+[Authelia](https://www.authelia.com/) Lightweight SSO and MFA proxy that integrates natively with Traefik via ForwardAuth middleware. Provides a single login for all services behind the ingress. Supports TOTP, WebAuthn/Passkeys, and OIDC.
 
 Alternative: **Authentik** if a full identity platform with user management and SAML is needed.
+
+### Authentik
+
+[Authentik](https://goauthentik.io/) is an IdP (Identity Provider) and SSO (Single Sign On) platform that is built with security at the forefront of every piece of code, every feature, with an emphasis on flexibility and versatility.
 
 ### CrowdSec
 
