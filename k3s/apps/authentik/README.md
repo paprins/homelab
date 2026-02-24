@@ -47,3 +47,6 @@ Copy result of both commands to (`secrets.yaml`)[secrets.yaml]. If you decide to
 
 * use external db
 * and/or use `PersistentVolume` to store db data on Synology NAS
+* implement ('domain-level forward authentication')[https://docs.goauthentik.io/add-secure-apps/providers/proxy/server_traefik/]
+* integrate with (Synology DSM)[https://integrations.goauthentik.io/infrastructure/synology-dsm/]
+

@@ -20,6 +20,7 @@ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs
 ```
 
 ### Sealed Secrets
+> **Status: DONE**
 
 Encrypt Kubernetes secrets for safe storage in Git. Completes the GitOps workflow with ArgoCD — no more manually applying secrets.
 
@@ -72,10 +73,13 @@ Lightweight uptime monitoring with a clean UI and push notifications (Telegram, 
 Alternative: **Authentik** if a full identity platform with user management and SAML is needed.
 
 ### Authentik
+> **Status: DONE**
 
 [Authentik](https://goauthentik.io/) is an IdP (Identity Provider) and SSO (Single Sign On) platform that is built with security at the forefront of every piece of code, every feature, with an emphasis on flexibility and versatility.
 
 ### CrowdSec
+> https://www.crowdsec.net/
+> Basically, it's a WAF !!
 
 Crowdsourced intrusion prevention engine. Detects and blocks attacks using community threat intelligence. Integrates with Traefik as a bouncer plugin.
 
