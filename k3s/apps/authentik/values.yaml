@@ -13,3 +13,6 @@ server:
         ingressClassName: traefik
         hosts:
             - auth.geeklabs.dev
+
+postgresql:
+    enabled: true
