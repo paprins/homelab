@@ -1,10 +1,7 @@
 global:
-    env:
-        - name: AUTHENTIK_SECRET_KEY
-          valueFrom:
-            secretKeyRef:
-              name: authentik-secret-key
-              key: AUTHENTIK_SECRET_KEY
+    envFrom:
+        - secretRef:
+            name: authentik-secret-key
 
 authentik:
     error_reporting:
