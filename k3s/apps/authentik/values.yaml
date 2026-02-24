@@ -6,6 +6,8 @@ authentik:
     error_reporting:
         enabled: false
         send_pii: false
+    postgresql:
+        password: file:///postgres-creds/password
 
 server:
     ingress:
@@ -13,6 +15,28 @@ server:
         ingressClassName: traefik
         hosts:
             - auth.geeklabs.dev
+    volumes:
+        - name: postgres-creds
+          secret:
+            secretName: authentik-postgres-credentials
+    volumeMounts:
+        - name: postgres-creds
+          mountPath: /postgres-creds
+          readOnly: true
+
+worker:
+    volumes:
+        - name: postgres-creds
+          secret:
+            secretName: authentik-postgres-credentials
+    volumeMounts:
+        - name: postgres-creds
+          mountPath: /postgres-creds
+          readOnly: true
 
 postgresql:
     enabled: true
+    auth:
+      username: authentik
+      database: authentik
+      existingSecret: authentik-postgres-credentials
