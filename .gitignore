@@ -2,7 +2,6 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,python
 
 ## Custom ##
-secrets/
 sealed-secrets-master-key.yaml
 .mcp.json
 
