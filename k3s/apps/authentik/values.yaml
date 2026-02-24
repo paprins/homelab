@@ -1,16 +1,11 @@
+global:
+    envFrom:
+        - secretRef:
+            name: authentik-secrets
 authentik:
-    secret_key: file:///authentik-secret/secret_key
-    # This sends anonymous usage-data, stack traces on errors and
-    # performance data to sentry.io, and is fully opt-in
     error_reporting:
         enabled: false
         send_pii: false
-    global:
-        envFrom:
-            - secretRef:
-              name: authentik-secrets
-    postgresql:
-        password: "ThisIsNotASecurePassword"
 
 server:
     ingress:
