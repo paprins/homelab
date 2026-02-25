@@ -1,0 +1,13 @@
+# Application configuration
+config:
+  inCluster: true
+  baseURL: dash.geeklabs.dev
+
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  hosts:
+    - host: dash.geeklabs.dev
+      paths:
+        - path: /
+          pathType: Prefix
