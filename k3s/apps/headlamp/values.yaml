@@ -5,3 +5,8 @@ ingress:
   tls:
     - hosts:
         - dash.geeklabs.dev
+  hosts:
+    - host: dash.geeklabs.dev
+      paths:
+        - path: /
+          pathType: Prefix
