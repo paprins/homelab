@@ -68,6 +68,7 @@ Providers with built-in support in both cert-manager and external-dns: **Cloudfl
 
 The following services are currently deployed on my cluster:
 
+* `headlamp` - simple, but effective dashoard for my k3s cluster
 * `metallb` - LoadBalancer
 * `traefik` - Ingress Controller
 * `sealed-secrets` - encrypt your `Secrets` so you can safely push them to Git
