@@ -4,6 +4,10 @@
 
 Finally got time to write about my homelab setup. It's not *that* special, but ... it's mine.
 
+Here it is, ... isn't it beautiful?
+
+![image](static/cluster.jpg)
+
 ## Hardware
 
 This is an overview of the hardware I've used to build my homelab (with the exception of some UTP cables I already had)
