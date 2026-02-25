@@ -9,4 +9,4 @@ ingress:
     - host: dash.geeklabs.dev
       paths:
         - path: /
-          pathType: Prefix
+          type: Prefix
