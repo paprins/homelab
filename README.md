@@ -56,6 +56,29 @@ Providers with built-in support in both cert-manager and external-dns: **Cloudfl
 
 ## Currently Installed
 
+<style>
+  .service-logos img {
+    height: 60px;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+  }
+  .service-logos img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+</style>
+
+<p align="center" class="service-logos">
+  <img src="static/metallb.png" alt="MetalLB" title="MetalLB &#10;LoadBalancer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="static/traefik.png" alt="Traefik" title="Traefik &#10;Ingress Controller">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="static/sealed-secrets.png" alt="Sealed Secrets" title="Sealed Secrets &#10;Encrypt your Secrets so you can safely push them to Git">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="static/cert-manager.png" alt="cert-manager" title="cert-manager &#10;X.509 certificate management using acme-issuer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="static/external-dns.png" alt="external-dns" title="external-dns &#10;Auto DNS record creation for Service resources">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="static/argocd.png" alt="Argo CD" title="Argo CD &#10;GitOps">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="static/authentik.png" alt="Authentik" title="Authentik &#10;Open-source IdP (Identity Provider) and SSO (Single Sign On) platform">
+</p>
+
 The following services are currently deployed on my cluster:
 
 * `metallb` - LoadBalancer
