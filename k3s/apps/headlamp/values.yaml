@@ -1,8 +1,4 @@
-# Application configuration
-config:
-  inCluster: true
-  baseURL: dash.geeklabs.dev
-
+---
 ingress:
   enabled: true
   ingressClassName: traefik
