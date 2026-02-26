@@ -1,4 +1,10 @@
 ---
+config:
+  oidc:
+    secret:
+      create: false
+      name: headlamp-oidc
+
 ingress:
   enabled: true
   ingressClassName: traefik

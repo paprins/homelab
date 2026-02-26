@@ -50,3 +50,8 @@ Copy result of both commands to (`secrets.yaml`)[secrets.yaml]. If you decide to
 * implement ('domain-level forward authentication')[https://docs.goauthentik.io/add-secure-apps/providers/proxy/server_traefik/]
 * integrate with (Synology DSM)[https://integrations.goauthentik.io/infrastructure/synology-dsm/]
 
+---
+
+# Apps
+
+* https://www.archy.net/ditching-azure-ad-self-hosted-identity-with-authentik/
