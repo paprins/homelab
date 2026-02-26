@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: kube-system
 
+resources:
+  - secrets.yaml
+
 helmCharts:
   - name: headlamp
     version: 0.40.0
