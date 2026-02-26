@@ -6,6 +6,24 @@ config:
     externalSecret:
       enabled: true
       name: headlamp-oidc
+  pluginsDir: /build/plugins
+
+initContainers:
+  - command:
+      - /bin/sh
+      - '-c'
+      - mkdir -p /build/plugins && cp -r /plugins/* /build/plugins/
+    image: ghcr.io/kubebeam/trivy-headlamp-plugin:v0.3.1
+    name: trivy-plugin
+    volumeMounts:
+      - mountPath: /build/plugins
+        name: headlamp-plugins
+volumeMounts:
+  - name: headlamp-plugins
+    mountPath: /build/plugins
+volumes:
+  - name: headlamp-plugins
+    emptyDir: {}
 
 ingress:
   enabled: true
