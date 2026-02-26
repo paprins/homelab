@@ -6,29 +6,33 @@ config:
     externalSecret:
       enabled: true
       name: headlamp-oidc
+    # clientID: ''
+    # clientSecret: ''
+    # issuerURL: ''
+    # scopes: ''
   pluginsDir: /build/plugins
 
-env:
-  - name: OIDC_CLIENT_ID
-    valueFrom:
-      secretKeyRef:
-        name: headlamp-oidc
-        key: clientID
-  - name: OIDC_CLIENT_SECRET
-    valueFrom:
-      secretKeyRef:
-        name: headlamp-oidc
-        key: clientSecret
-  - name: OIDC_ISSUER_URL
-    valueFrom:
-      secretKeyRef:
-        name: headlamp-oidc
-        key: issuerURL
-  - name: OIDC_SCOPES
-    valueFrom:
-      secretKeyRef:
-        name: headlamp-oidc
-        key: scopes
+  env:
+    - name: OIDC_CLIENT_ID
+      valueFrom:
+        secretKeyRef:
+          name: headlamp-oidc
+          key: clientID
+    - name: OIDC_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: headlamp-oidc
+          key: clientSecret
+    - name: OIDC_ISSUER_URL
+      valueFrom:
+        secretKeyRef:
+          name: headlamp-oidc
+          key: issuerURL
+    - name: OIDC_SCOPES
+      valueFrom:
+        secretKeyRef:
+          name: headlamp-oidc
+          key: scopes
 
 initContainers:
   - command:
