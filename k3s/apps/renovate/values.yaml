@@ -6,3 +6,15 @@ renovate:
   endpoint: https://api.github.com/
 
   existingSecret: mend-renovate-ce-secrets
+
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - renovate.geeklabs.dev
+  hosts:
+    - host: renovate.geeklabs.dev
+      paths:
+        - path: /
+          type: Prefix
