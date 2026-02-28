@@ -44,7 +44,7 @@ helm install argocd argo/argo-cd \
 
 ## 4. Expose Argo CD via Ingress
 
-Create a standard Kubernetes Ingress to expose the Argo CD UI at `argocd.geeklabs.dev`. We use a standard Ingress (not a Traefik IngressRoute) because external-dns watches Ingress resources for hostnames and automatically creates the corresponding DNS records in TransIP.
+Create a standard Kubernetes Ingress to expose the Argo CD UI at `argocd.geeklabs.dev`. I use a standard Ingress (not a Traefik IngressRoute) because external-dns watches Ingress resources for hostnames and automatically creates the corresponding DNS records in TransIP.
 
 Create the file `k3s/argocd/ingress.yaml`:
 
@@ -464,4 +464,4 @@ After you have installed argoCD in the cluster manually, you can point argoCD as
 
 I created the `Application` here: [`k3s/argocd/apps/argocd`](../k3s/argocd/apps/argocd.yaml). The actual implementation is [here](../k3s/apps/argocd/).
 
-Because, in the meantime, we already installed [Authentik](../k3s/apps/authentik/), I configured ArgoCD to use Authentik for authn and authz. Read about it [here](https://integrations.goauthentik.io/infrastructure/argocd/).
+Because, in the meantime, I already installed [Authentik](../k3s/apps/authentik/) and configured ArgoCD to use Authentik for authn and authz. Read about it [here](https://integrations.goauthentik.io/infrastructure/argocd/).

@@ -226,7 +226,7 @@ If using `policy=upsert-only`, external-dns will never delete records. Switch to
 
 **Duplicate TXT records / ownership errors**
 
-The `txtOwnerId` identifies which external-dns instance owns a record. If you reinstall external-dns with a different owner ID, it won't recognize its old records. Stick with a consistent `txtOwnerId` (we use `k3s-homelab`).
+The `txtOwnerId` identifies which external-dns instance owns a record. If you reinstall external-dns with a different owner ID, it won't recognize its old records. Stick with a consistent `txtOwnerId` (I use `k3s-homelab`).
 
 **Verify a record in TransIP**
 

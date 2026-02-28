@@ -54,6 +54,7 @@ Each guide builds on the previous one. Follow them in order.
 | 07 | **Traefik TLS** | Default wildcard certificate so every Ingress gets HTTPS | [07-TRAEFIK-TLS.md](07-TRAEFIK-TLS.md) |
 | 08 | **Argo CD** | GitOps — push to Git, cluster updates automatically | [08-ARGOCD.md](08-ARGOCD.md) |
 | 20 | **Sealed Secrets** | Encrypt secrets so they're safe to commit to Git | [20-SEALED-SECRETS.md](20-SEALED-SECRETS.md) |
+| 10 | **Renovate** | Automated dependency updates via GitHub App | [10-RENOVATE.md](10-RENOVATE.md) |
 
 After completing guides 01 through 08, you have a fully functional GitOps-managed cluster. From that point on, deploying a new service is as simple as adding a YAML file to your Git repo.
 

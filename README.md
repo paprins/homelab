@@ -31,5 +31,6 @@ Start with the [Overview](docs/00-OVERVIEW.md) to understand the architecture, t
 7. [Traefik TLS](docs/07-TRAEFIK-TLS.md) — Default wildcard TLS certificate
 8. [Argo CD](docs/08-ARGOCD.md) — GitOps continuous delivery
 9. [Sealed Secrets](docs/20-SEALED-SECRETS.md) — Encrypted secrets in Git
+10. [Renovate](docs/10-RENOVATE.md) — Automated dependency updates
 
 [Recommendations](docs/100-RECOMMENDATIONS.md) — Service recommendations for future expansion

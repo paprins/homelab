@@ -103,6 +103,3 @@ Deploy a Tailscale subnet router as a k3s pod to expose the entire homelab netwo
 
 Alternative: **Headscale** for a fully self-hosted Tailscale control server.
 
-### Renovate
-
-Automated dependency update bot. Scans Git repos and creates PRs when Helm charts, container images, or other dependencies are outdated. Essential for keeping the homelab current.

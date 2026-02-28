@@ -27,14 +27,14 @@ replicaset.apps/headlamp-6b84f9fdc5   1         1         1       43m
 replicaset.apps/headlamp-85945776df   0         0         0       48m
 ```
 
-And, we have an `Ingress`:
+And, there is an `Ingress`:
 
 ```
 NAME       CLASS     HOSTS               ADDRESS      PORTS     AGE
 headlamp   traefik   dash.geeklabs.dev   10.0.1.240   80, 443   26
 ```
 
-By default, the Helm chart also creates a `ServiceAccount` called `headlamp` (if you did not change this in the `values.yaml`). For now, we need to create an access token to be able to login.
+By default, the Helm chart also creates a `ServiceAccount` called `headlamp` (if you did not change this in the `values.yaml`). For now, you need to create an access token to be able to login.
 
 ## Get Access Token
 
@@ -50,4 +50,4 @@ As mentioned, this is a work-in-progress. I will add OIDC login (using Authentik
 
 ## Dashboard
 
-As you can see in the `Ingress` defintion, we used `dash.geeklabs.dev`. Because of our integration with `external-dns` and `cert-manager`, we can access our dashboard in our browser at https://dash.geeklabs.dev
+As you can see in the `Ingress` definition, I used `dash.geeklabs.dev`. Because of the integration with `external-dns` and `cert-manager`, the dashboard is accessible in the browser at https://dash.geeklabs.dev
