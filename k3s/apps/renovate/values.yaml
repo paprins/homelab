@@ -14,7 +14,7 @@ ingress:
     - hosts:
         - renovate.geeklabs.dev
   hosts:
-    - host: renovate.geeklabs.dev
+    renovate.geeklabs.dev:
       paths:
         - path: /
-          type: Prefix
+          pathType: ImplementationSpecific
