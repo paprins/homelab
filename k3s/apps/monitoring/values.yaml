@@ -35,6 +35,7 @@ prometheus:
 
 ## --- Grafana: lightweight ---
 grafana:
+  assertNoLeakedSecrets: false
   ingress:
     enabled: true
     ingressClassName: traefik
