@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+data:
+  statusbadge.enabled: "true"
+  admin.enabled: "false"
+  url: https://argocd.geeklabs.dev
+  dex.config: |
+    connectors:
+    - config:
+        issuer: https://authentik.geeklabs.dev/application/o/argocd/
+        clientID: $authentik-argocd-credentials:clientId
+        clientSecret: $authentik-argocd-credentials:clientSecret
+        insecureEnableGroups: true
+        scopes:
+        - openid
+        - profile
+        - email
+      name: authentik
+      type: oidc
+      id: authentik
