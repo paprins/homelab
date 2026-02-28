@@ -4,8 +4,12 @@ metadata:
   name: argocd-server-dns
   namespace: argocd
 spec:
+  ingressClassName: traefik
   rules:
     - host: argocd.geeklabs.dev
+      tls:
+        - hosts:
+          - argocd.geeklabs.dev
       http:
         paths:
           - path: /
