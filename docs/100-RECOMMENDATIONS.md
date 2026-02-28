@@ -46,15 +46,9 @@ Configure automatic etcd snapshots to the Synology NAS:
 Without monitoring, the cluster is a black box.
 
 ### kube-prometheus-stack
+> **Status: DONE** — See [09-MONITORING.md](../docs/09-MONITORING.md)
 
-Single Helm chart that deploys Prometheus, Grafana, Alertmanager, node-exporter, and kube-state-metrics. Includes pre-built dashboards for Kubernetes.
-
-> **k3s note:** By default, k3s binds control plane metrics to `127.0.0.1`. Add these server flags to enable scraping:
-> ```
-> --kube-controller-manager-arg bind-address=0.0.0.0
-> --kube-scheduler-arg bind-address=0.0.0.0
-> --kube-proxy-arg metrics-bind-address=0.0.0.0
-> ```
+Single Helm chart that deploys Prometheus, Grafana, Alertmanager, node-exporter, and kube-state-metrics. Includes pre-built dashboards for Kubernetes. Grafana is exposed at `grafana.geeklabs.dev` with Authentik SSO.
 
 ### Loki + Promtail
 

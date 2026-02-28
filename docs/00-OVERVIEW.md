@@ -53,6 +53,7 @@ Each guide builds on the previous one. Follow them in order.
 | 06 | **external-dns** | Automatic DNS records when you create an Ingress | [06-EXTERNAL-DNS.md](06-EXTERNAL-DNS.md) |
 | 07 | **Traefik TLS** | Default wildcard certificate so every Ingress gets HTTPS | [07-TRAEFIK-TLS.md](07-TRAEFIK-TLS.md) |
 | 08 | **Argo CD** | GitOps — push to Git, cluster updates automatically | [08-ARGOCD.md](08-ARGOCD.md) |
+| 09 | **Monitoring** | Prometheus, Grafana, and Alertmanager via kube-prometheus-stack | [09-MONITORING.md](09-MONITORING.md) |
 | 20 | **Sealed Secrets** | Encrypt secrets so they're safe to commit to Git | [20-SEALED-SECRETS.md](20-SEALED-SECRETS.md) |
 | 10 | **Renovate** | Automated dependency updates via GitHub App | [10-RENOVATE.md](10-RENOVATE.md) |
 
@@ -169,6 +170,7 @@ homelab/
 │   │   │   ├── root.yaml          # Root "App of Apps" — manages this directory
 │   │   │   ├── hello-world.yaml
 │   │   │   ├── metallb.yaml
+│   │   │   ├── monitoring.yaml
 │   │   │   ├── tls.yaml
 │   │   │   └── sealed-secrets.yaml
 │   │   ├── ingress.yaml           # Ingress for the ArgoCD UI
@@ -176,7 +178,7 @@ homelab/
 │   ├── apps/                      # Helm-based apps (managed via Kustomize)
 │   │   ├── argocd/
 │   │   ├── authentik/
-│   │   └── headlamp/
+│   │   └── monitoring/
 │   ├── metallb/                   # MetalLB configuration
 │   │   ├── ip-address-pool.yaml
 │   │   └── l2-advertisement.yaml
