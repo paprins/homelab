@@ -65,13 +65,19 @@ grafana:
     auth.generic_oauth:
         name: authentik
         enabled: true
-        client_id: "$grafana-oauth-secrets:clientId"
-        client_secret: "$grafana-oauth-secrets:clientSecret"
+        client_id: $__file{/etc/secrets/grafana-oauth-secrets/clientId}
+        client_secret: $__file{/etc/secrets/grafana-oauth-secrets/clientSecret}
         scopes: "openid profile email"
         auth_url: "https://auth.geeklabs.dev/application/o/authorize/"
         token_url: "https://auth.geeklabs.dev/application/o/token/"
         api_url: "https://auth.geeklabs.dev/application/o/userinfo/"
         role_attribute_path: contains(groups, 'Grafana Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'
+  extraSecretMounts:
+    - name: grafana-oauth-secrets
+      secretName: grafana-oauth-secrets
+      defaultMode: 0440
+      mountPath: /etc/secrets/grafana-oauth-secrets
+      readOnly: true
   resources:
     requests:
       cpu: 50m
