@@ -35,6 +35,23 @@ prometheus:
 
 ## --- Grafana: lightweight ---
 grafana:
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    hosts:
+      - grafana.geeklabs.dev
+    path: /
+    pathType: Prefix
+    tls:
+      - hosts:
+          - grafana.geeklabs.dev
+  grafana.ini:
+    server:
+      root_url: https://grafana.geeklabs.dev
+    analytics:
+      enabled: false
+      reporting_enabled: false
+      check_for_updates: false
   resources:
     requests:
       cpu: 50m
