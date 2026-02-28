@@ -9,7 +9,7 @@ data:
   dex.config: |
     connectors:
     - config:
-        issuer: https://authentik.geeklabs.dev/application/o/argocd/
+        issuer: https://auth.geeklabs.dev/application/o/argocd/
         clientID: $authentik-argocd-credentials:clientId
         clientSecret: $authentik-argocd-credentials:clientSecret
         insecureEnableGroups: true
