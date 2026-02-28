@@ -17,11 +17,11 @@ Renovate can run in two ways:
 
 ### Why I use the GitHub App
 
-The self-hosted Renovate Community Edition (`mend-renovate-ce`) does **not publish `linux/arm64` Docker images**. Since this cluster runs entirely on Raspberry Pi (ARM64), the self-hosted option cannot run on our nodes.
+The self-hosted Renovate Community Edition (`mend-renovate-ce`) does **not publish `linux/arm64` Docker images**. Since this cluster runs entirely on Raspberry Pi (ARM64), the self-hosted option cannot run on the cluster nodes.
 
 A Kustomize-based deployment is prepared at `k3s/apps/renovate/` in case ARM64 images become available in the future, but it is **not active** — there is no ArgoCD Application pointing to it.
 
-The GitHub App works perfectly for our use case: it runs on GitHub's infrastructure, needs no cluster resources, and has access to the repository out of the box.
+The GitHub App works perfectly for this use case: it runs on GitHub's infrastructure, needs no cluster resources, and has access to the repository out of the box.
 
 ## Setup
 

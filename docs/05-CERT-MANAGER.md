@@ -226,7 +226,7 @@ The response should show the whoami output and `curl -v` should confirm a valid 
 
 ## Wildcard certificates
 
-DNS-01 is the only ACME challenge type that supports wildcard certificates. Our TransIP webhook setup works with wildcards out of the box — no changes to the ClusterIssuer needed.
+DNS-01 is the only ACME challenge type that supports wildcard certificates. The TransIP webhook setup works with wildcards out of the box — no changes to the ClusterIssuer needed.
 
 ### Why use wildcards
 
@@ -277,23 +277,17 @@ spec:
 
 This issues one cert covering all three patterns, though cert-manager runs a DNS-01 challenge for each entry.
 
-### Sharing the secret across namespaces
+### Sharing the wildcard certificate across namespaces
 
-The wildcard secret lives in one namespace. To use it from other namespaces you can either:
+The wildcard certificate Secret lives in a single namespace. Without extra steps, Ingresses in other namespaces cannot reference it. There are a few approaches:
 
-1. **Create a Certificate resource in each namespace** that needs it (cert-manager issues one cert per Certificate resource).
-2. **Use a secret reflector** like [reflector](https://github.com/emberstack/kubernetes-reflector) to automatically sync the secret across namespaces. Annotate the source secret:
+1. **Traefik default TLSStore (recommended)** — Store the wildcard certificate in the `traefik` namespace and configure a Traefik TLSStore named `default` that references it. Traefik then serves this certificate automatically for any Ingress that has a `tls` section — no `secretName` needed, no cross-namespace copying. This is the approach I use. See [07-TRAEFIK-TLS.md](07-TRAEFIK-TLS.md) for the setup.
 
-```yaml
-metadata:
-  annotations:
-    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "demo,production"
-    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-    reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "demo,production"
-```
+2. **Create a Certificate resource in each namespace** — cert-manager issues a separate cert per Certificate resource. Works, but each one triggers its own DNS-01 challenge (2-10 min wait).
 
-Then reference `wildcard-geeklabs-dev-tls` in any Ingress across those namespaces.
+3. **Use a secret reflector** like [reflector](https://github.com/emberstack/kubernetes-reflector) to automatically sync the Secret across namespaces. More moving parts than option 1.
+
+For a homelab, option 1 is the simplest by far — one certificate, one TLSStore, and every Ingress just works.
 
 ## Troubleshooting
 
