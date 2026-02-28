@@ -17,24 +17,24 @@ By the end you will have a 3-node cluster running real services accessible via H
         ▼               │    ┌──────▼───────┐                              │
    DNS lookup           │    │   Switch     │                              │
    (external-dns        │    └──┬───┬───┬───┘                              │
-    → DNS provider)     │       │   │   │                                   │
-        │               │  ┌────▼┐ ┌▼────┐ ┌▼────┐                        │
-        ▼               │  │ Pi  │ │ Pi  │ │ Pi  │   k3s cluster          │
-   A record points to   │  │  1  │ │  2  │ │  3  │   (3 nodes)           │
-   LoadBalancer IP      │  │     │ │     │ │     │                        │
-        │               │  └──┬──┘ └──┬──┘ └──┬──┘                        │
+    → DNS provider)     │       │   │   │                                  │
+        │               │  ┌────▼┐ ┌▼────┐ ┌▼────┐                         │
+        ▼               │  │ Pi  │ │ Pi  │ │ Pi  │   k3s cluster           │
+   A record points to   │  │  1  │ │  2  │ │  3  │   (3 nodes)             │
+   LoadBalancer IP      │  │     │ │     │ │     │                         │
+        │               │  └──┬──┘ └──┬──┘ └──┬──┘                         │
         │               │     │       │       │                            │
-        ▼               │  ┌──▼───────▼───────▼──┐                        │
-   10.0.1.240           │  │      MetalLB         │  Assigns LB IPs       │
+        ▼               │  ┌──▼───────▼───────▼──┐                         │
+   10.0.1.240           │  │      MetalLB         │  Assigns LB IPs        │
    (MetalLB)            │  └──────────┬───────────┘                        │
         │               │             │                                    │
         ▼               │  ┌──────────▼───────────┐                        │
-   Traefik              │  │    Traefik Ingress    │  TLS termination      │
-   (ingress)            │  │    + wildcard cert    │  (*.geeklabs.dev)     │
+   Traefik              │  │    Traefik Ingress   │  TLS termination       │
+   (ingress)            │  │    + wildcard cert   │  (*.geeklabs.dev)      │
         │               │  └──────────┬───────────┘                        │
         ▼               │             │                                    │
    Your app             │  ┌──────────▼───────────┐                        │
-                        │  │   Service → Pod(s)    │  Your application     │
+                        │  │   Service → Pod(s)   │  Your application      │
                         │  └──────────────────────┘                        │
                         └──────────────────────────────────────────────────┘
 ```
