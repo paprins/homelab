@@ -106,28 +106,32 @@ Two components in this stack talk to your DNS provider's API:
 
 Both need **API access** to your DNS provider. When choosing a provider, check that it is supported by **both** cert-manager and external-dns — not all providers are.
 
-### Providers with built-in support in both tools
+### European providers with good support
 
-These work out of the box with no extra webhooks or plugins:
+| Provider | Country | cert-manager | external-dns | Notes |
+|---|---|---|---|---|
+| **[TransIP](https://www.transip.nl/)** | NL | Via [webhook](https://github.com/demeester/cert-manager-webhook-transip) | Via [webhook](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/transip.md) | Used in these guides. Popular Dutch registrar. |
+| **[Hetzner DNS](https://www.hetzner.com/dns-console)** | DE | Via [webhook](https://github.com/vadimkim/cert-manager-webhook-hetzner) | Via [webhook](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/hetzner.md) | Free DNS hosting. Very popular in the European homelab community. |
+| **[OVHcloud](https://www.ovhcloud.com/)** | FR | Via [webhook](https://github.com/baarde/cert-manager-webhook-ovh) | [Built-in](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/ovh.md) | Major European cloud provider. |
+| **[Scaleway](https://www.scaleway.com/)** | FR | Via [webhook](https://github.com/scaleway/cert-manager-webhook-scaleway) | [Built-in](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/scaleway.md) | French cloud provider with free DNS hosting. |
+| **[deSEC](https://desec.io/)** | DE | Via [webhook](https://github.com/kmorning/cert-manager-webhook-desec) | Via [webhook](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/desec.md) | Free, privacy-focused, non-profit DNS hosting. |
 
-- **[Cloudflare](https://www.cloudflare.com/)** — Free tier available. Widely used, excellent API. The easiest choice if you don't have a preference yet.
-- **[AWS Route 53](https://aws.amazon.com/route53/)**
-- **[Google Cloud DNS](https://cloud.google.com/dns)**
-- **[Azure DNS](https://azure.microsoft.com/en-us/products/dns)**
-- **[DigitalOcean DNS](https://www.digitalocean.com/products/networking)**
+> Most European providers require community **webhook solvers** for cert-manager. This adds one extra Helm install (as shown in [05-CERT-MANAGER.md](05-CERT-MANAGER.md) for TransIP), but it is straightforward.
 
-### Providers supported via community webhooks
+### Non-European alternatives
 
-Many other providers work but require an additional webhook solver for cert-manager and/or a provider plugin for external-dns. This is the case for **TransIP** (used in these guides) — it requires the [cert-manager-webhook-transip](https://github.com/demeester/cert-manager-webhook-transip) solver.
+If you do not have a preference for a European provider, **[Cloudflare](https://www.cloudflare.com/)** (US-based) has a free tier and **built-in** support in both cert-manager and external-dns — no webhooks needed. It is the easiest option to set up.
 
 ### If your registrar does not offer a DNS API
 
-You do not have to move your domain registration. You can keep your domain at any registrar and **delegate DNS** to a provider that has an API:
+You do not have to move your domain registration. You can keep your domain at any registrar and **delegate DNS** to a provider that has an API. For example, with Hetzner DNS (free):
 
-1. Sign up for a free Cloudflare account and add your domain
-2. Cloudflare gives you two nameservers (e.g. `ada.ns.cloudflare.com`)
-3. Update the NS records at your registrar to point to Cloudflare
-4. DNS is now managed by Cloudflare while your domain stays registered where it is
+1. Create a free [Hetzner DNS Console](https://dns.hetzner.com/) account and add your domain
+2. Hetzner gives you three nameservers (e.g. `hydrogen.ns.hetzner.com`)
+3. Update the NS records at your registrar to point to Hetzner
+4. DNS is now managed by Hetzner while your domain stays registered where it is
+
+This also works with Cloudflare, deSEC, or any other provider that offers DNS hosting.
 
 ### What to look for
 
@@ -135,10 +139,10 @@ When picking a provider, keep these things in mind:
 
 - **API key / token authentication** — You will store API credentials as Kubernetes Secrets (encrypted via Sealed Secrets). Make sure the provider supports API keys or tokens, not just username/password login.
 - **Rate limits** — cert-manager creates and deletes TXT records during certificate issuance. Providers with very low API rate limits can cause certificate issuance to fail or be slow.
-- **Propagation speed** — DNS-01 challenges require the TXT record to be visible to Let's Encrypt's validation servers. Some providers propagate changes in seconds (Cloudflare), others take minutes (TransIP). Slower propagation just means you wait longer for certificates, it does not break anything.
+- **Propagation speed** — DNS-01 challenges require the TXT record to be visible to Let's Encrypt's validation servers. Some providers propagate changes in seconds (Hetzner, Cloudflare), others take minutes (TransIP). Slower propagation just means you wait longer for certificates, it does not break anything.
 - **Wildcard support** — All providers support wildcard DNS records, but verify that the cert-manager solver for your provider supports wildcard certificates (`*.yourdomain.com`). Most do.
 
-> **Tip:** If you are starting from scratch and just want things to work, go with **Cloudflare**. It is free, fast, and has first-class support in both cert-manager and external-dns with no extra webhooks needed.
+> **Tip:** If you are starting from scratch and want a European provider, **Hetzner DNS** is free and well-supported. If you don't mind a US-based provider, **Cloudflare** (also free) has built-in support in both tools without needing webhooks.
 
 ## About this setup
 

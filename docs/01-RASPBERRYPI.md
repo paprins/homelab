@@ -29,6 +29,7 @@ This cluster runs **Raspberry Pi OS Lite (Debian Trixie)** — the 64-bit, headl
 ### Flash the OS
 
 Use the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash each SSD (or SD card):
+(I used [this](https://www.amazon.nl/dp/B0FJQFYVNX) to flash each SSD)
 
 1. Open Raspberry Pi Imager
 2. Select **Raspberry Pi 5** as the device
@@ -41,7 +42,7 @@ Use the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash ea
 The Raspberry Pi Imager lets you set up the most important settings before the first boot. This saves you from having to connect a keyboard and monitor.
 
 **General tab:**
-- Set a **hostname** (e.g. `k3s-master` for the first Pi, `k3s-node1` and `k3s-node2` for the others)
+- Set a **hostname** (e.g. `k3s-master` for the first Pi, `k3s-worker-1` and `k3s-worker-2` for the others)
 - Set a **username and password** (e.g. `pi` / your password)
 - Skip wireless LAN (the Pis will use ethernet)
 - Set your **locale and timezone**
