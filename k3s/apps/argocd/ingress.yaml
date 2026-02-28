@@ -5,11 +5,11 @@ metadata:
   namespace: argocd
 spec:
   ingressClassName: traefik
+  tls:
+    - hosts:
+      - argocd.geeklabs.dev
   rules:
     - host: argocd.geeklabs.dev
-      tls:
-        - hosts:
-          - argocd.geeklabs.dev
       http:
         paths:
           - path: /
