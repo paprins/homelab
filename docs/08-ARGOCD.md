@@ -458,16 +458,10 @@ helm upgrade argocd argo/argo-cd \
 
 > When running `helm upgrade`, you must include all previously set values — Helm does not merge with prior `--set` flags. Omitting a value resets it to the chart default.
 
-## Cleanup
+## Manage ArgoCD with ... ArgoCD
 
-To completely remove Argo CD and all managed applications:
+After you have installed argoCD in the cluster manually, you can point argoCD as an Application in the repo with the same configurations. The agent will read up the configuration and start managing it in the next refresh. Since there are no changes it would come up as synced.
 
-```bash
-kubectl delete -f k3s/argocd/apps/root.yaml
-kubectl delete -f k3s/argocd/project.yaml
-kubectl delete -f k3s/argocd/ingress.yaml
-helm uninstall argocd --namespace argocd
-kubectl delete namespace argocd
-```
+I created the `Application` here: [`k3s/argocd/apps/argocd`](../k3s/argocd/apps/argocd.yaml). The actual implementation is [here](../k3s/apps/argocd/).
 
-> Delete the root Application first — this lets Argo CD cleanly remove all child Applications and their resources before the server itself is torn down.
+Because, in the meantime, we already installed [Authentik](../k3s/apps/authentik/), I configured ArgoCD to use Authentik for authn and authz. Read about it [here](https://integrations.goauthentik.io/infrastructure/argocd/).

@@ -16,7 +16,7 @@ This is an overview of the hardware I've used to build my homelab (with the exce
 * [GeeekPi DeskPi T0 4U](https://shorturl.at/935yF)
 * [GeeekPi 10 inch 2U Rack Mount for 4x Raspberry Pi 5](https://shorturl.at/K6cVp)
 * [GeeekPi 12 Port Patch Panel 0.5U CAT6](https://shorturl.at/rE2g1)
-* [Corsair P310 500Gb SSD](https://www.alternate.nl/Crucial/P310-500-GB-SSD/html/product/100079258)
+* [Crucial P310 500GB NVMe SSD](https://www.alternate.nl/Crucial/P310-500-GB-SSD/html/product/100079258)
 * [Unifi USW Flex Mini](https://www.coolblue.nl/product/888938/ubiquiti-unifi-usw-flex-mini.html)
 * [Anker Prime Charger 200W](https://www.coolblue.nl/product/963285/anker-prime-6-in-1-oplaadstation-200w.html)
 
@@ -42,7 +42,9 @@ Providers with built-in support in both cert-manager and external-dns: **Cloudfl
 
 ## Setup Guide
 
-1. [Raspberry Pi](docs/01-RASPBERRYPI.md) — OS install and initial config
+Start with the [Overview](docs/00-OVERVIEW.md) to understand the architecture, then follow the guides in order:
+
+1. [Raspberry Pi](docs/01-RASPBERRYPI.md) — Hardware setup, OS install, and network config
 2. [k3s](docs/02-K3S.md) — Lightweight Kubernetes cluster
 3. [MetalLB](docs/03-METALLB.md) — Bare-metal LoadBalancer
 4. [Traefik](docs/04-TRAEFIK.md) — Ingress controller
@@ -56,25 +58,17 @@ Providers with built-in support in both cert-manager and external-dns: **Cloudfl
 
 ## Currently Installed
 
-<p align="center">
-  <img src="static/metallb-bw.png" height="60" alt="MetalLB" title="MetalLB &#10;LoadBalancer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="static/traefik-bw.png" height="60" alt="Traefik" title="Traefik &#10;Ingress Controller">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="static/sealed-secrets-bw.png" height="60" alt="Sealed Secrets" title="Sealed Secrets &#10;Encrypt your Secrets so you can safely push them to Git">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="static/cert-manager-bw.png" height="60" alt="cert-manager" title="cert-manager &#10;X.509 certificate management using acme-issuer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="static/external-dns-bw.png" height="60" alt="external-dns" title="external-dns &#10;Auto DNS record creation for Service resources">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="static/argocd-bw.png" height="60" alt="Argo CD" title="Argo CD &#10;GitOps">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="static/authentik-bw.png" height="60" alt="Authentik" title="Authentik &#10;Open-source IdP (Identity Provider) and SSO (Single Sign On) platform">
-</p>
-
 The following services are currently deployed on my cluster:
 
-* `headlamp` - simple, but effective dashoard for my k3s cluster
-* `metallb` - LoadBalancer
-* `traefik` - Ingress Controller
-* `sealed-secrets` - encrypt your `Secrets` so you can safely push them to Git
-* `cert-manager` - X.509 certificate management using `acme-issuer`
-* `external-dns` - auto DNS record creation for `Service` resources
-* `argocd` - GitOps
-* `authentik` - open-source IdP (Identity Provider) and SSO (Single Sign On) platform
+* `metallb` — bare-metal LoadBalancer
+* `traefik` — Ingress controller
+* `cert-manager` — TLS certificates via Let's Encrypt (DNS-01)
+* `external-dns` — automatic DNS record management
+* `sealed-secrets` — encrypted secrets safe to store in Git
+* `longhorn` — distributed block storage across nodes
+* `argocd` — GitOps continuous delivery
+* `authentik` — identity provider and SSO platform
+* `headlamp` — Kubernetes dashboard with OIDC login
+* `trivy-operator` — container image vulnerability scanning
 
 I will do my best to update this repository and let it reflect the current state of my homelab. Some of the information only applies to my setup, other information is generic and can be used anywhere.
