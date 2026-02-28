@@ -45,6 +45,12 @@ grafana:
     tls:
       - hosts:
           - grafana.geeklabs.dev
+
+  admin:
+    existingSecret: grafana-admin-credentials
+    userKey: admin_user
+    passwordKey: admin_password
+  
   grafana.ini:
     server:
       root_url: https://grafana.geeklabs.dev
@@ -52,6 +58,19 @@ grafana:
       enabled: false
       reporting_enabled: false
       check_for_updates: false
+    auth:
+        signout_redirect_url: "https://auth.geeklabs.dev/application/o/grafana/end-session/"
+        oauth_auto_login: true
+    auth.generic_oauth:
+        name: authentik
+        enabled: true
+        client_id: "$grafana-oauth-secrets:clientId"
+        client_secret: "$grafana-oauth-secrets:clientSecret"
+        scopes: "openid profile email"
+        auth_url: "https://auth.geeklabs.dev/application/o/authorize/"
+        token_url: "https://auth.geeklabs.dev/application/o/token/"
+        api_url: "https://auth.geeklabs.dev/application/o/userinfo/"
+        role_attribute_path: contains(groups, 'Grafana Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'
   resources:
     requests:
       cpu: 50m
