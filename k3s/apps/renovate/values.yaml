@@ -1,0 +1,8 @@
+renovate:
+  mendRnvAcceptTos: true
+  
+  # Platform configuration
+  platform: github
+  endpoint: https://api.github.com/
+
+  existingSecret: mend-renovate-ce-secrets

@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: renovate
+
+resources:
+  - secrets.yaml
+
+helmCharts:
+  - name: mend-renovate-ce
+    version: 14.0.0
+    repo: https://mend.github.io/renovate-ce-ee
+    releaseName: renovate
+    valuesFile: values.yaml
