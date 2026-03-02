@@ -6,7 +6,7 @@ Argo CD is a declarative GitOps tool that continuously monitors your Git reposit
 
 ## Prerequisites
 
-- A running k3s cluster ([../core/02-K3S.md](../core/02-K3S.md))
+- A running k3s cluster ([02-K3S.md](../core/02-K3S.md))
 - MetalLB configured with an available IP pool ([01-METALLB.md](01-METALLB.md))
 - Traefik ingress controller installed ([02-TRAEFIK.md](02-TRAEFIK.md))
 - cert-manager with a working ClusterIssuer ([03-CERT-MANAGER.md](03-CERT-MANAGER.md))
@@ -462,6 +462,6 @@ helm upgrade argocd argo/argo-cd \
 
 After you have installed argoCD in the cluster manually, you can point argoCD as an Application in the repo with the same configurations. The agent will read up the configuration and start managing it in the next refresh. Since there are no changes it would come up as synced.
 
-I created the `Application` here: [`k3s/argocd/apps/argocd`](../k3s/argocd/apps/argocd.yaml). The actual implementation is [here](../k3s/apps/argocd/).
+I created the `Application` here: [`k3s/argocd/apps/argocd`](../../k3s/argocd/apps/argocd.yaml). The actual implementation is [here](../../k3s/apps/argocd/).
 
-Because, in the meantime, I already installed [Authentik](../k3s/apps/authentik/) and configured ArgoCD to use Authentik for authn and authz. Read about it [here](https://integrations.goauthentik.io/infrastructure/argocd/).
+Because, in the meantime, I already installed [Authentik](../../k3s/apps/authentik/) and configured ArgoCD to use Authentik for authn and authz. Read about it [here](https://integrations.goauthentik.io/infrastructure/argocd/).

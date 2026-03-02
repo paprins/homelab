@@ -8,10 +8,10 @@ All components are tuned for Raspberry Pi resource constraints.
 
 ## Prerequisites
 
-- A running k3s cluster ([../core/02-K3S.md](../core/02-K3S.md))
-- Argo CD with Kustomize Helm rendering enabled ([../base/06-ARGOCD.md](../base/06-ARGOCD.md))
-- Traefik ingress controller with wildcard TLS ([../base/05-TRAEFIK-TLS.md](../base/05-TRAEFIK-TLS.md))
-- Sealed Secrets controller installed ([../base/07-SEALED-SECRETS.md](../base/07-SEALED-SECRETS.md))
+- A running k3s cluster ([02-K3S.md](../core/02-K3S.md))
+- Argo CD with Kustomize Helm rendering enabled ([06-ARGOCD.md](../base/06-ARGOCD.md))
+- Traefik ingress controller with wildcard TLS ([05-TRAEFIK-TLS.md](../base/05-TRAEFIK-TLS.md))
+- Sealed Secrets controller installed ([07-SEALED-SECRETS.md](../base/07-SEALED-SECRETS.md))
 - Authentik configured as IdP (optional, for SSO login to Grafana)
 
 ## What gets deployed

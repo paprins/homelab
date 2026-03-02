@@ -19,7 +19,7 @@ transip.key ──────────► SealedSecret ───────
 
 ## Prerequisites
 
-- A running k3s cluster ([../core/02-K3S.md](../core/02-K3S.md))
+- A running k3s cluster ([02-K3S.md](../core/02-K3S.md))
 - ArgoCD installed and configured ([06-ARGOCD.md](06-ARGOCD.md))
 - `kubectl` and `helm` installed and configured
 - Raw secret files in the gitignored `secrets/` directory
