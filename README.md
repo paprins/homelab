@@ -1,5 +1,7 @@
 # Pascal's Homelab
 
+> **DISCLAIMER:** The `main` branch reflects the live state of the cluster and has moved beyond what's covered in the guides. If you're following along, check the [releases](https://github.com/paprins/homelab/releases) for a stable snapshot that matches the documentation.
+
 👋 Hi there!
 
 Finally got time to write about my homelab setup. It's not *that* special, but ... it's mine.
