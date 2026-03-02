@@ -310,6 +310,6 @@ The sidecar picks it up automatically — no restart needed.
 
 ## Next steps
 
-- **Loki + Promtail** — Add log aggregation alongside metrics. Loki integrates natively with Grafana as a data source. See [here](../index.md#whats-next).
+- **Loki + Promtail** — Add log aggregation alongside metrics. Loki integrates natively with Grafana as a data source. See [here](../README.md#whats-next).
 - **Alert rules and receivers** — Configure Alertmanager with notification channels (Slack, email, Telegram) and add PrometheusRule resources for alerts.
 - **Custom ServiceMonitors** — Expose metrics from your own services and create ServiceMonitor resources for Prometheus to scrape them.

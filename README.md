@@ -20,7 +20,7 @@ Here it is, ... isn't it beautiful?
 
 ## Getting Started
 
-Start [here](docs/index.md) to understand the architecture, then follow the guides in order.
+Start [here](docs/README.md) to understand the architecture, then follow the guides in order.
 
 ### Core — Get your cluster running
 
