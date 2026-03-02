@@ -20,17 +20,24 @@ Here it is, ... isn't it beautiful?
 
 ## Getting Started
 
-Start with the [Overview](docs/00-OVERVIEW.md) to understand the architecture, then follow the guides in order:
+Start [here](docs/index.md) to understand the architecture, then follow the guides in order.
 
-1. [Raspberry Pi](docs/01-RASPBERRYPI.md) — Hardware setup, OS install, and network config
-2. [k3s](docs/02-K3S.md) — Lightweight Kubernetes cluster
-3. [MetalLB](docs/03-METALLB.md) — Bare-metal LoadBalancer
-4. [Traefik](docs/04-TRAEFIK.md) — Ingress controller
-5. [cert-manager](docs/05-CERT-MANAGER.md) — TLS certificates via DNS-01
-6. [external-dns](docs/06-EXTERNAL-DNS.md) — Automatic DNS records
-7. [Traefik TLS](docs/07-TRAEFIK-TLS.md) — Default wildcard TLS certificate
-8. [Argo CD](docs/08-ARGOCD.md) — GitOps continuous delivery
-9. [Sealed Secrets](docs/20-SEALED-SECRETS.md) — Encrypted secrets in Git
-10. [Renovate](docs/10-RENOVATE.md) — Automated dependency updates
+### Core — Get your cluster running
 
-[Recommendations](docs/100-RECOMMENDATIONS.md) — Service recommendations for future expansion
+1. [Raspberry Pi](docs/core/01-RASPBERRYPI.md) — Hardware setup, OS install, and network config
+2. [k3s](docs/core/02-K3S.md) — Lightweight Kubernetes cluster
+
+### Base — Make the cluster production-ready
+
+3. [MetalLB](docs/base/01-METALLB.md) — Bare-metal LoadBalancer
+4. [Traefik](docs/base/02-TRAEFIK.md) — Ingress controller
+5. [cert-manager](docs/base/03-CERT-MANAGER.md) — TLS certificates via DNS-01
+6. [external-dns](docs/base/04-EXTERNAL-DNS.md) — Automatic DNS records
+7. [Traefik TLS](docs/base/05-TRAEFIK-TLS.md) — Default wildcard TLS certificate
+8. [Argo CD](docs/base/06-ARGOCD.md) — GitOps continuous delivery
+9. [Sealed Secrets](docs/base/07-SEALED-SECRETS.md) — Encrypted secrets in Git
+
+### Workloads — Deploy services on the platform
+
+10. [Monitoring](docs/workloads/01-MONITORING.md) — Prometheus, Grafana, and Alertmanager
+11. [Renovate](docs/workloads/02-RENOVATE.md) — Automated dependency updates

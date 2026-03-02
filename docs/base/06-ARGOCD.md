@@ -6,11 +6,11 @@ Argo CD is a declarative GitOps tool that continuously monitors your Git reposit
 
 ## Prerequisites
 
-- A running k3s cluster ([02-K3S.md](02-K3S.md))
-- MetalLB configured with an available IP pool ([03-METALLB.md](03-METALLB.md))
-- Traefik ingress controller installed ([04-TRAEFIK.md](04-TRAEFIK.md))
-- cert-manager with a working ClusterIssuer ([05-CERT-MANAGER.md](05-CERT-MANAGER.md))
-- Wildcard TLS certificate for `*.geeklabs.dev` ([07-TRAEFIK-TLS.md](07-TRAEFIK-TLS.md))
+- A running k3s cluster ([../core/02-K3S.md](../core/02-K3S.md))
+- MetalLB configured with an available IP pool ([01-METALLB.md](01-METALLB.md))
+- Traefik ingress controller installed ([02-TRAEFIK.md](02-TRAEFIK.md))
+- cert-manager with a working ClusterIssuer ([03-CERT-MANAGER.md](03-CERT-MANAGER.md))
+- Wildcard TLS certificate for `*.geeklabs.dev` ([05-TRAEFIK-TLS.md](05-TRAEFIK-TLS.md))
 - Helm 3 installed on your local machine
 
 ## 1. Add the Argo CD Helm Repository

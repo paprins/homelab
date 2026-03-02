@@ -8,10 +8,10 @@ All components are tuned for Raspberry Pi resource constraints.
 
 ## Prerequisites
 
-- A running k3s cluster ([02-K3S.md](02-K3S.md))
-- Argo CD with Kustomize Helm rendering enabled ([08-ARGOCD.md](08-ARGOCD.md))
-- Traefik ingress controller with wildcard TLS ([07-TRAEFIK-TLS.md](07-TRAEFIK-TLS.md))
-- Sealed Secrets controller installed ([20-SEALED-SECRETS.md](20-SEALED-SECRETS.md))
+- A running k3s cluster ([../core/02-K3S.md](../core/02-K3S.md))
+- Argo CD with Kustomize Helm rendering enabled ([../base/06-ARGOCD.md](../base/06-ARGOCD.md))
+- Traefik ingress controller with wildcard TLS ([../base/05-TRAEFIK-TLS.md](../base/05-TRAEFIK-TLS.md))
+- Sealed Secrets controller installed ([../base/07-SEALED-SECRETS.md](../base/07-SEALED-SECRETS.md))
 - Authentik configured as IdP (optional, for SSO login to Grafana)
 
 ## What gets deployed
@@ -229,7 +229,7 @@ Two SealedSecrets are defined in `secrets.yaml`:
 | `grafana-admin-credentials` | `admin_user`, `admin_password` | Grafana admin login |
 | `grafana-oauth-secrets` | `clientId`, `clientSecret` | Grafana → Authentik OIDC |
 
-To create or rotate these secrets, encrypt them with `kubeseal` (see [20-SEALED-SECRETS.md](20-SEALED-SECRETS.md)):
+To create or rotate these secrets, encrypt them with `kubeseal` (see [07-SEALED-SECRETS.md](../base/07-SEALED-SECRETS.md)):
 
 ```bash
 # Example: create the admin credentials secret
@@ -310,6 +310,6 @@ The sidecar picks it up automatically — no restart needed.
 
 ## Next steps
 
-- **Loki + Promtail** — Add log aggregation alongside metrics. Loki integrates natively with Grafana as a data source. See [100-RECOMMENDATIONS.md](100-RECOMMENDATIONS.md).
+- **Loki + Promtail** — Add log aggregation alongside metrics. Loki integrates natively with Grafana as a data source. See [here](../index.md#whats-next).
 - **Alert rules and receivers** — Configure Alertmanager with notification channels (Slack, email, Telegram) and add PrometheusRule resources for alerts.
 - **Custom ServiceMonitors** — Expose metrics from your own services and create ServiceMonitor resources for Prometheus to scrape them.

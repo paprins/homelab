@@ -29,7 +29,7 @@ Verify the pods are running:
 kubectl get pods -n traefik
 ```
 
-Verify the LoadBalancer Service got an external IP (requires MetalLB to be installed and configured — see [03-METALLB.md](03-METALLB.md)):
+Verify the LoadBalancer Service got an external IP (requires MetalLB to be installed and configured — see [01-METALLB.md](01-METALLB.md)):
 
 ```bash
 kubectl get svc -n traefik
@@ -47,7 +47,7 @@ You should see `traefik` listed. All Ingress resources in this cluster use `ingr
 
 ## Next steps
 
-After installing cert-manager ([05-CERT-MANAGER.md](05-CERT-MANAGER.md)) and external-dns ([06-EXTERNAL-DNS.md](06-EXTERNAL-DNS.md)), configure a default wildcard TLS certificate for traefik in [07-TRAEFIK-TLS.md](07-TRAEFIK-TLS.md).
+After installing cert-manager ([03-CERT-MANAGER.md](03-CERT-MANAGER.md)) and external-dns ([04-EXTERNAL-DNS.md](04-EXTERNAL-DNS.md)), configure a default wildcard TLS certificate for traefik in [05-TRAEFIK-TLS.md](05-TRAEFIK-TLS.md).
 
 ## Troubleshooting
 
@@ -60,7 +60,7 @@ kubectl logs -n traefik -l app.kubernetes.io/name=traefik
 
 **No external IP on the LoadBalancer Service**
 
-If the external IP stays `<pending>`, verify that MetalLB is running and has an available IP pool (see [03-METALLB.md](03-METALLB.md)):
+If the external IP stays `<pending>`, verify that MetalLB is running and has an available IP pool (see [01-METALLB.md](01-METALLB.md)):
 
 ```bash
 kubectl get pods -n metallb-system

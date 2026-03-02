@@ -4,8 +4,8 @@ Configure traefik with a default wildcard certificate for `*.geeklabs.dev` so th
 
 ## Prerequisites
 
-- Traefik installed and running ([04-TRAEFIK.md](04-TRAEFIK.md))
-- cert-manager and the TransIP webhook solver installed ([05-CERT-MANAGER.md](05-CERT-MANAGER.md))
+- Traefik installed and running ([02-TRAEFIK.md](02-TRAEFIK.md))
+- cert-manager and the TransIP webhook solver installed ([03-CERT-MANAGER.md](03-CERT-MANAGER.md))
 
 ## 1. Request the wildcard certificate
 

@@ -16,9 +16,11 @@ This is the hardware used in this homelab. You can substitute parts, but the gui
 | [Unifi USW Flex Mini](https://www.coolblue.nl/product/888938/ubiquiti-unifi-usw-flex-mini.html) | 1 | 5-port managed switch for the cluster |
 | [Anker Prime 200W 6-in-1 charger](https://www.coolblue.nl/product/963285/anker-prime-6-in-1-oplaadstation-200w.html) | 1 | Powers all three Pis via USB-C |
 
-You also need an NVMe HAT or adapter for each Pi 5 (to connect the SSD), and ethernet cables.
+You also need an NVMe HAT or adapter for each Pi 5 (to connect the SSD), and ethernet cables. Mine came with the [GeeekPi 10" 2U rack mount for 4x Pi 5](https://shorturl.at/K6cVp). 
 
 > **Why NVMe instead of microSD?** SD cards are slow and wear out quickly under Kubernetes workloads (etcd writes, container pulls, log rotation). NVMe SSDs are significantly faster and more durable. You can start with SD cards to test, but plan to move to NVMe for anything long-running.
+
+> **Raspberry Pi + NVMe compatibility** I read some stories about preparing your RPI to enable the PCIe. **BUT**, I did not have to do anything! My RPI 5 had PCIe enabled and recognized my [SSD](https://www.alternate.nl/Crucial/P310-500-GB-SSD/html/product/100079258). Follow [this](https://www.jeffgeerling.com/blog/2023/nvme-ssd-boot-raspberry-pi-5/) guide if you're not so lucky.
 
 ## Operating system
 
@@ -56,9 +58,11 @@ Repeat for all three Pis, giving each a unique hostname.
 
 ## First boot
 
-1. Insert the SSD (or SD card) into each Pi
+1. Insert the SSD into each Pi
 2. Connect each Pi to the network switch via ethernet
 3. Connect power — the Pis boot automatically
+
+> **NOTE**: for me this was weird! I have 3 RPIs for which I prepared the SSD as described. First Pi booted from SSD without any issues. Second and third did not come up ... or, so it seemed. I hooked up a monitor and a keyboard and noticed that *both* Pi's were 'stuck' in a different stage of the installation process. (it basically asked for info that I already provided in the Raspberry Pi Imager). After finishing the installation process manually, it all worked and I could continue.
 
 Wait a minute for them to boot, then find their IP addresses. Check your router's DHCP lease table, or scan the network:
 
@@ -77,6 +81,7 @@ ssh pi@<ip-address>
 ```
 
 ## Configure static IPs
+> (to be honest: i did not do this yet 😳)
 
 Kubernetes nodes need stable IP addresses. If a node's IP changes, the cluster breaks. You have two options:
 
@@ -175,6 +180,7 @@ free -h | grep Swap
 Password-based SSH works, but key-based authentication is more convenient and more secure.
 
 From your laptop:
+> **note**: replace `pi` with other username if you configured this in the Raspberry Pi Imager. In my case, I used `admin` as username.
 
 ```bash
 # Generate a key pair if you don't have one

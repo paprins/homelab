@@ -281,7 +281,7 @@ This issues one cert covering all three patterns, though cert-manager runs a DNS
 
 The wildcard certificate Secret lives in a single namespace. Without extra steps, Ingresses in other namespaces cannot reference it. There are a few approaches:
 
-1. **Traefik default TLSStore (recommended)** — Store the wildcard certificate in the `traefik` namespace and configure a Traefik TLSStore named `default` that references it. Traefik then serves this certificate automatically for any Ingress that has a `tls` section — no `secretName` needed, no cross-namespace copying. This is the approach I use. See [07-TRAEFIK-TLS.md](07-TRAEFIK-TLS.md) for the setup.
+1. **Traefik default TLSStore (recommended)** — Store the wildcard certificate in the `traefik` namespace and configure a Traefik TLSStore named `default` that references it. Traefik then serves this certificate automatically for any Ingress that has a `tls` section — no `secretName` needed, no cross-namespace copying. This is the approach I use. See [05-TRAEFIK-TLS.md](05-TRAEFIK-TLS.md) for the setup.
 
 2. **Create a Certificate resource in each namespace** — cert-manager issues a separate cert per Certificate resource. Works, but each one triggers its own DNS-01 challenge (2-10 min wait).
 

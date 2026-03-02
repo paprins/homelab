@@ -39,25 +39,41 @@ By the end you will have a 3-node cluster running real services accessible via H
                         └──────────────────────────────────────────────────┘
 ```
 
-## Components
+## Guides
 
-Each guide builds on the previous one. Follow them in order.
+The guides are split into three tiers. Each tier builds on the previous one — complete them in order within each tier.
+
+### Tier 1: Core — Get your cluster running
+
+After this tier you have a working 3-node k3s cluster.
 
 | # | Component | What it does | Guide |
 |---|-----------|-------------|-------|
-| 01 | **Raspberry Pi** | Hardware setup, OS install, network config | [01-RASPBERRYPI.md](01-RASPBERRYPI.md) |
-| 02 | **k3s** | Lightweight Kubernetes cluster | [02-K3S.md](02-K3S.md) |
-| 03 | **MetalLB** | Assigns real IPs to LoadBalancer Services (replaces cloud LB) | [03-METALLB.md](03-METALLB.md) |
-| 04 | **Traefik** | Routes external traffic to your Services based on hostname | [04-TRAEFIK.md](04-TRAEFIK.md) |
-| 05 | **cert-manager** | Automatic TLS certificates from Let's Encrypt | [05-CERT-MANAGER.md](05-CERT-MANAGER.md) |
-| 06 | **external-dns** | Automatic DNS records when you create an Ingress | [06-EXTERNAL-DNS.md](06-EXTERNAL-DNS.md) |
-| 07 | **Traefik TLS** | Default wildcard certificate so every Ingress gets HTTPS | [07-TRAEFIK-TLS.md](07-TRAEFIK-TLS.md) |
-| 08 | **Argo CD** | GitOps — push to Git, cluster updates automatically | [08-ARGOCD.md](08-ARGOCD.md) |
-| 09 | **Monitoring** | Prometheus, Grafana, and Alertmanager via kube-prometheus-stack | [09-MONITORING.md](09-MONITORING.md) |
-| 20 | **Sealed Secrets** | Encrypt secrets so they're safe to commit to Git | [20-SEALED-SECRETS.md](20-SEALED-SECRETS.md) |
-| 10 | **Renovate** | Automated dependency updates via GitHub App | [10-RENOVATE.md](10-RENOVATE.md) |
+| 01 | **Raspberry Pi** | Hardware setup, OS install, network config | [core/01-RASPBERRYPI.md](core/01-RASPBERRYPI.md) |
+| 02 | **k3s** | Lightweight Kubernetes cluster | [core/02-K3S.md](core/02-K3S.md) |
 
-After completing guides 01 through 08, you have a fully functional GitOps-managed cluster. From that point on, deploying a new service is as simple as adding a YAML file to your Git repo.
+### Tier 2: Base — Make the cluster production-ready
+
+After this tier you have a fully functional GitOps-managed cluster with automatic TLS, DNS, and encrypted secrets. Deploying a new service is as simple as adding a YAML file to your Git repo.
+
+| # | Component | What it does | Guide |
+|---|-----------|-------------|-------|
+| 01 | **MetalLB** | Assigns real IPs to LoadBalancer Services (replaces cloud LB) | [base/01-METALLB.md](base/01-METALLB.md) |
+| 02 | **Traefik** | Routes external traffic to your Services based on hostname | [base/02-TRAEFIK.md](base/02-TRAEFIK.md) |
+| 03 | **cert-manager** | Automatic TLS certificates from Let's Encrypt | [base/03-CERT-MANAGER.md](base/03-CERT-MANAGER.md) |
+| 04 | **external-dns** | Automatic DNS records when you create an Ingress | [base/04-EXTERNAL-DNS.md](base/04-EXTERNAL-DNS.md) |
+| 05 | **Traefik TLS** | Default wildcard certificate so every Ingress gets HTTPS | [base/05-TRAEFIK-TLS.md](base/05-TRAEFIK-TLS.md) |
+| 06 | **Argo CD** | GitOps — push to Git, cluster updates automatically | [base/06-ARGOCD.md](base/06-ARGOCD.md) |
+| 07 | **Sealed Secrets** | Encrypt secrets so they're safe to commit to Git | [base/07-SEALED-SECRETS.md](base/07-SEALED-SECRETS.md) |
+
+### Tier 3: Workloads — Deploy services on the platform
+
+After this tier you have observability and automated dependency updates on top of the platform.
+
+| # | Component | What it does | Guide |
+|---|-----------|-------------|-------|
+| 01 | **Monitoring** | Prometheus, Grafana, and Alertmanager via kube-prometheus-stack | [workloads/01-MONITORING.md](workloads/01-MONITORING.md) |
+| 02 | **Renovate** | Automated dependency updates via GitHub App | [workloads/02-RENOVATE.md](workloads/02-RENOVATE.md) |
 
 ## How a request reaches your app
 
@@ -118,7 +134,7 @@ Both need **API access** to your DNS provider. When choosing a provider, check t
 | **[Scaleway](https://www.scaleway.com/)** | FR | Via [webhook](https://github.com/scaleway/cert-manager-webhook-scaleway) | [Built-in](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/scaleway.md) | French cloud provider with free DNS hosting. |
 | **[deSEC](https://desec.io/)** | DE | Via [webhook](https://github.com/kmorning/cert-manager-webhook-desec) | Via [webhook](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/desec.md) | Free, privacy-focused, non-profit DNS hosting. |
 
-> Most European providers require community **webhook solvers** for cert-manager. This adds one extra Helm install (as shown in [05-CERT-MANAGER.md](05-CERT-MANAGER.md) for TransIP), but it is straightforward.
+> Most European providers require community **webhook solvers** for cert-manager. This adds one extra Helm install (as shown in [base/03-CERT-MANAGER.md](base/03-CERT-MANAGER.md) for TransIP), but it is straightforward.
 
 ### Non-European alternatives
 
@@ -151,7 +167,7 @@ When picking a provider, keep these things in mind:
 A few things to keep in mind:
 
 - **This is a private homelab.** Nothing is exposed to the internet. Services are only accessible on the local network (and via WireGuard VPN if configured).
-- **TransIP is used as the DNS provider.** These guides show TransIP-specific configuration (webhook solver, API keys, Helm flags). If you use a different provider, the architecture and flow are the same — you just swap out the provider-specific parts in [05-CERT-MANAGER.md](05-CERT-MANAGER.md) and [06-EXTERNAL-DNS.md](06-EXTERNAL-DNS.md).
+- **TransIP is used as the DNS provider.** These guides show TransIP-specific configuration (webhook solver, API keys, Helm flags). If you use a different provider, the architecture and flow are the same — you just swap out the provider-specific parts in [base/03-CERT-MANAGER.md](base/03-CERT-MANAGER.md) and [base/04-EXTERNAL-DNS.md](base/04-EXTERNAL-DNS.md).
 - **ARM64 only.** All three nodes are Raspberry Pi 5 boards. Make sure any container images you deploy support `linux/arm64`.
 - **Not production.** This is a learning environment. The guides favour simplicity over high availability. For example, there is a single control-plane node rather than three.
 
@@ -196,4 +212,34 @@ Two patterns are used for deploying services:
 1. **Plain manifests** (e.g. `k3s/metallb/`, `k3s/tls/`, `demo/`) — simple YAML files that ArgoCD applies directly.
 2. **Kustomize + Helm** (e.g. `k3s/apps/authentik/`) — a `kustomization.yaml` that pulls a Helm chart and overlays values and sealed secrets. Used for more complex applications.
 
-Both patterns are managed by ArgoCD through the App of Apps approach (see [08-ARGOCD.md](08-ARGOCD.md)).
+Both patterns are managed by ArgoCD through the App of Apps approach (see [base/06-ARGOCD.md](base/06-ARGOCD.md)).
+
+## What's Next
+
+Ideas for future expansion of the homelab, organized by category.
+
+### Storage
+
+- **NFS StorageClass** — Use `nfs-subdir-external-provisioner` to dynamically provision PersistentVolumes on a Synology NAS. Prerequisite for all stateful workloads.
+- **Longhorn** — Distributed block storage by Rancher. Provides replicated storage across the Pi nodes with built-in snapshots and backups. ARM64 supported since v1.6.
+
+### Observability
+
+- **Loki + Promtail** — Log aggregation that pairs with Grafana. Promtail runs as a DaemonSet and ships container logs to Loki. Much lighter than ELK/EFK.
+- **Uptime Kuma** — Lightweight uptime monitoring with a clean UI and push notifications. Supports HTTP, TCP, DNS, and ping checks.
+
+### Security & Access
+
+- **Authelia** — Lightweight SSO and MFA proxy that integrates natively with Traefik via ForwardAuth middleware. Supports TOTP, WebAuthn/Passkeys, and OIDC.
+- **CrowdSec** — Crowdsourced intrusion prevention engine. Detects and blocks attacks using community threat intelligence. Integrates with Traefik as a bouncer plugin.
+- **Vaultwarden** — Lightweight, self-hosted Bitwarden-compatible password manager. Extremely low resource usage (~64MB RAM).
+- **k3s Secrets Encryption at Rest** — Enable with the `--secrets-encryption` flag on the k3s server. Encrypts secrets stored in the embedded etcd database.
+
+### Backup & Recovery
+
+- **k3s etcd Snapshot Backups** — Configure automatic etcd snapshots to a NAS for cluster state recovery.
+- **Velero** — Kubernetes resource and volume backup/restore. Backs up to S3-compatible storage. Works with Longhorn CSI snapshots for full cluster recovery.
+
+### Networking
+
+- **Tailscale Subnet Router** — Deploy a Tailscale subnet router as a k3s pod to expose the entire homelab network over a WireGuard mesh without per-device configuration.
