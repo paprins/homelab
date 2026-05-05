@@ -20,10 +20,16 @@ server:
         - name: postgres-creds
           secret:
             secretName: authentik-postgres-credentials
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 512Mi
     volumeMounts:
         - name: postgres-creds
           mountPath: /postgres-creds
           readOnly: true
+        - name: dshm
+          mountPath: /dev/shm
 
 worker:
     volumes:
