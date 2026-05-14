@@ -30,11 +30,11 @@ spec:
         ingress:
           enabled: true
           className: traefik
-        hosts:
-          - host: radar.geeklabs.dev
-            paths:
-              - path: /
-                pathType: Prefix
+          hosts:
+            - host: radar.geeklabs.dev
+              paths:
+                - path: /
+                  pathType: Prefix
   destination:
     name: in-cluster
     namespace: radar
