@@ -1,3 +1,19 @@
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: skyhook
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  name: skyhook
+  project: homelab
+  type: helm
+  url: https://skyhook-io.github.io/helm-charts
+  
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
