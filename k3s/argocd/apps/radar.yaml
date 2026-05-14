@@ -35,6 +35,11 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
+        rbac:
+          helm: true
+          secrets: true
+          viewRBAC: true
+          portForward: true
   destination:
     name: in-cluster
     namespace: radar
