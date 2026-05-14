@@ -29,6 +29,7 @@ spec:
       values: |
         ingress:
           enabled: true
+          className: traefik
         hosts:
           - host: radar.geeklabs.dev
             paths:
